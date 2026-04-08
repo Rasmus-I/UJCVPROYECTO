@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dm35r15w1jygy" path="res://Map/Sin título-1.png" id="2_4l1t8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bqqs"]
-radius = 24.0
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jufm4"]
 atlas = ExtResource("2_4l1t8")
@@ -79,4 +79,9 @@ frame_progress = 0.6056473
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areadamage" unique_id=1044424806]
 shape = SubResource("CircleShape2D_v7dth")
 
+[node name="TemporizadorDmg" type="Timer" parent="." unique_id=1436141447]
+wait_time = 0.8
+
 [connection signal="body_entered" from="areadamage" to="." method="_on_areadamage_body_entered"]
+[connection signal="body_shape_exited" from="areadamage" to="." method="_on_areadamage_body_shape_exited"]
+[connection signal="timeout" from="TemporizadorDmg" to="." method="_on_temporizador_dmg_timeout"]

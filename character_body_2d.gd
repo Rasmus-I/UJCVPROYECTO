@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+# NOTA GENERAL: presionar ALT Z o ir a EDIT / Editar y buscar Wrap Line / Ajuste de linea para mejor legibilidad.
 var SALUD_MAX = 100
 var SALUD = 100
 
@@ -12,14 +13,14 @@ const FRICCION = 25.0
 # Indices 1-4 se SUPONE que son los frames de la pierna derecha.
 # Indices 5-8 se SUPONE que son los frames de la pierna izquierda.
 const SECUENCIA_FRAMES = [0, 1, 2, 3, 4, 3, 2, 1, 0, 5, 6, 7, 8, 7, 6, 5]
-# Bueno al final resulta tambien de que usariamos uhhhh.... esto. XD. Que bueno que solo son los frames, por ahora.
+# Bueno al final resulta tambien de que usariamos matrices. Vaya.
 
 var ATACANDOESTADO = false 
 var DIRECCIONACTUAL = "down"
 
 @onready var anim = $AnimatedSprite2D
 @onready var area_ataque = $area_ataque/CollisionShape2D
-@onready var direccion_ataque = $area_ataque/CollisionShape2D
+# Se removio direccion_ataque, aparentemente era mas facil
 
 # Variables.
 var timing_animacion = 0.0
@@ -32,7 +33,7 @@ func _physics_process(delta):
 	if ATACANDOESTADO:
 		return
 		
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
 	
 	# Input de ataque va aca.
 	if Input.is_action_just_pressed("attack"):
@@ -74,19 +75,19 @@ func _physics_process(delta):
 	
 func atacar():
 		ATACANDOESTADO = true
-		velocity = Vector2.ZERO #Esto detiene al jugador al atacar. Machetazo al que de alguna manera rompa esto.
+		velocity = Vector2.ZERO #Esto detiene al jugador al atacar. 
 		anim.animation = "attack_" + DIRECCIONACTUAL
 		anim.play()
 		
 		match DIRECCIONACTUAL:
 			"right":
-				direccion_ataque.position = Vector2(15,0)
+				area_ataque.position = Vector2(15,0)
 			"left":
-				direccion_ataque.position = Vector2(-15,0)
+				area_ataque.position = Vector2(-15,0)
 			"up":
-				direccion_ataque.position = Vector2(0,-15)
+				area_ataque.position = Vector2(0,-15)
 			"down":
-				direccion_ataque.position = Vector2(0,15)
+				area_ataque.position = Vector2(0,15)
 		
 		area_ataque.disabled = false
 
@@ -103,6 +104,7 @@ func recibir_damage(cantidad):
 		morir()
 
 func morir():
+	Consola.escribir("FIN DEL JUEGO.", "maroon")
 	queue_free()
 
 func wrap_up_animation():
@@ -117,5 +119,5 @@ func wrap_up_animation():
 
 func _on_area_ataque_body_entered(body: Node2D) -> void:
 	if body.has_method("recibir_damage"):
-		body.recibir_damage(25)
+		body.recibir_damage(50)
 	#Anotacion, esta funcion se hace cuando le das click a area_ataque, luego al inspector, vas a la seccion de signals y LE DAS CLICK A 'body_entered(area algo algo)', Esto es para que reciba daño.

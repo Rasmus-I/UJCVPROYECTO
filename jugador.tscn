@@ -39,9 +39,13 @@ region = Rect2(192, 192, 48, 48)
 atlas = ExtResource("3_7st5j")
 region = Rect2(240, 192, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ofol1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o684"]
 atlas = ExtResource("3_7st5j")
-region = Rect2(96, 288, 48, 48)
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7st5j"]
+atlas = ExtResource("2_ukil5")
+region = Rect2(96, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snn6g"]
 atlas = ExtResource("3_7st5j")
@@ -55,9 +59,17 @@ region = Rect2(192, 288, 48, 48)
 atlas = ExtResource("3_7st5j")
 region = Rect2(240, 288, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukil5"]
+atlas = ExtResource("3_7st5j")
+region = Rect2(48, 96, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2g8h0"]
 atlas = ExtResource("3_7st5j")
 region = Rect2(96, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17637"]
+atlas = ExtResource("3_7st5j")
+region = Rect2(144, 240, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dv3cb"]
 atlas = ExtResource("3_7st5j")
@@ -67,9 +79,9 @@ region = Rect2(192, 240, 48, 48)
 atlas = ExtResource("3_7st5j")
 region = Rect2(240, 240, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_17637"]
-atlas = ExtResource("3_7st5j")
-region = Rect2(144, 240, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_btb33"]
+atlas = ExtResource("2_ukil5")
+region = Rect2(0, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kt6vr"]
 atlas = ExtResource("3_7st5j")
@@ -86,6 +98,10 @@ region = Rect2(192, 336, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewi0c"]
 atlas = ExtResource("3_7st5j")
 region = Rect2(240, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvhml"]
+atlas = ExtResource("3_7st5j")
+region = Rect2(48, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8u5f"]
 atlas = ExtResource("2_ukil5")
@@ -186,6 +202,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3i8ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o684")
 }],
 "loop": false,
 "name": &"attack_down",
@@ -193,7 +212,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ofol1")
+"texture": SubResource("AtlasTexture_7st5j")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_snn6g")
@@ -203,6 +222,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g64nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukil5")
 }],
 "loop": false,
 "name": &"attack_left",
@@ -213,13 +235,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_2g8h0")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_17637")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dv3cb")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ouq0e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_17637")
+"texture": SubResource("AtlasTexture_btb33")
 }],
 "loop": false,
 "name": &"attack_right",
@@ -237,6 +262,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ewi0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvhml")
 }],
 "loop": false,
 "name": &"attack_up",
@@ -366,7 +394,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o00ia"]
-size = Vector2(10, 16)
+size = Vector2(10, 12)
 
 [node name="Jugador" type="CharacterBody2D" unique_id=20994654 groups=["Jugador"]]
 texture_filter = 1
@@ -382,9 +410,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(1.5258789e-05, -8)
 sprite_frames = SubResource("SpriteFrames_ynsuh")
-animation = &"attack_down"
-frame = 3
-frame_progress = 1.0
+animation = &"attack_right"
 
 [node name="area_ataque" type="Area2D" parent="." unique_id=1216853551]
 collision_layer = 0
@@ -392,7 +418,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area_ataque" unique_id=717898491]
 modulate = Color(0.943786, 0.02528958, 0.06880377, 1)
-position = Vector2(10, 8)
+position = Vector2(0, 12)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_o00ia")
 disabled = true

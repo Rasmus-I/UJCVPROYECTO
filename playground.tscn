@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://yagwppvv2cak"]
 
 [ext_resource type="PackedScene" uid="uid://08bq7w724ntx" path="res://jugador.tscn" id="2_m8u5f"]
+[ext_resource type="Script" uid="uid://brnqmo37fpir6" path="res://capa_ui.gd" id="4_4bqqs"]
 [ext_resource type="Texture2D" uid="uid://blcobj6wf7bbx" path="res://Map/Map_Layout.png" id="4_is3ju"]
+[ext_resource type="Script" uid="uid://b5f0eibaiadha" path="res://rich_text_label.gd" id="4_o00ia"]
 [ext_resource type="PackedScene" uid="uid://bgvreqsfuawr5" path="res://slime.tscn" id="5_o00ia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4bqqs"]
@@ -9014,3 +9016,19 @@ position = Vector2(512, 416)
 
 [node name="Slime" parent="." unique_id=1871893418 instance=ExtResource("5_o00ia")]
 position = Vector2(416, 416)
+
+[node name="CapaUI" type="CanvasLayer" parent="." unique_id=1015163248]
+script = ExtResource("4_4bqqs")
+
+[node name="Panel" type="Panel" parent="CapaUI" unique_id=1982815401]
+offset_left = 848.0
+offset_right = 1024.0
+offset_bottom = 768.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CapaUI/Panel" unique_id=781809950]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 768.0
+focus_mode = 2
+selection_enabled = true
+script = ExtResource("4_o00ia")
