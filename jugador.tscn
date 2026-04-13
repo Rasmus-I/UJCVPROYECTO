@@ -208,7 +208,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_down",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -228,7 +228,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_left",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -248,7 +248,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_right",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -268,7 +268,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_up",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -394,7 +394,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o00ia"]
-size = Vector2(10, 12)
+size = Vector2(16, 12)
 
 [node name="Jugador" type="CharacterBody2D" unique_id=20994654 groups=["Jugador"]]
 texture_filter = 1
@@ -411,6 +411,8 @@ texture_filter = 1
 position = Vector2(1.5258789e-05, -8)
 sprite_frames = SubResource("SpriteFrames_ynsuh")
 animation = &"attack_right"
+frame = 4
+frame_progress = 1.0
 
 [node name="area_ataque" type="Area2D" parent="." unique_id=1216853551]
 collision_layer = 0
