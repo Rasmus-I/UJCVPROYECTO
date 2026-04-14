@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://g5bi47lvhj17"]
 
 [ext_resource type="Texture2D" uid="uid://blcobj6wf7bbx" path="res://Map/Map_Layout.png" id="1_qluxc"]
-[ext_resource type="PackedScene" uid="uid://08bq7w724ntx" path="res://jugador.tscn" id="2_ek83b"]
 [ext_resource type="PackedScene" uid="uid://bgvreqsfuawr5" path="res://slime.tscn" id="3_ri5fw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tc3pe"]
@@ -9100,6 +9099,3 @@ position = Vector2(656, 688)
 
 [node name="Slime13" parent="." unique_id=1380049829 instance=ExtResource("3_ri5fw")]
 position = Vector2(472, 176)
-
-[node name="Jugador" parent="." unique_id=20994654 instance=ExtResource("2_ek83b")]
-position = Vector2(728, 616)

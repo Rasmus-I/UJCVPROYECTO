@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://brnqmo37fpir6" path="res://capa_ui.gd" id="4_4bqqs"]
 [ext_resource type="Script" uid="uid://b5f0eibaiadha" path="res://rich_text_label.gd" id="4_o00ia"]
 [ext_resource type="PackedScene" uid="uid://bgvreqsfuawr5" path="res://slime.tscn" id="5_o00ia"]
+[ext_resource type="PackedScene" uid="uid://cek56rnwgvf00" path="res://AlmaEnPena.tscn" id="5_ynsuh"]
 
 [node name="Playground" type="Node2D" unique_id=755776361]
 texture_filter = 1
@@ -13,17 +14,21 @@ texture_filter = 1
 [node name="Mapas" type="Node2D" parent="." unique_id=909460421]
 
 [node name="1" parent="Mapas" unique_id=308452321 instance=ExtResource("1_4bqqs")]
-position = Vector2(-8, 0)
+process_mode = 4
+position = Vector2(8, 0)
 
 [node name="Cuarto0" parent="Mapas" unique_id=320821942 instance=ExtResource("1_o00ia")]
-visible = false
+process_mode = 4
+position = Vector2(0, 768)
 
 [node name="Jugador" parent="." unique_id=20994654 instance=ExtResource("2_m8u5f")]
-visible = false
-position = Vector2(752, 664)
+position = Vector2(192, 408)
 
 [node name="Slime" parent="." unique_id=1871893418 instance=ExtResource("5_o00ia")]
 position = Vector2(416, 416)
+
+[node name="AlmaESP" parent="." unique_id=517335953 instance=ExtResource("5_ynsuh")]
+position = Vector2(192, 328)
 
 [node name="CapaUI" type="CanvasLayer" parent="." unique_id=1015163248]
 script = ExtResource("4_4bqqs")

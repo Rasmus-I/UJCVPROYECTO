@@ -5,6 +5,7 @@ extends CharacterBody2D
 # Terminos: Dmg / Damage = Daño, No uso Ñ porque capaz y hay error.
 var SALUD = 250
 const VELOCIDAD = 40.0
+const DISTANCIAPARAR = 40.0
 const DISTANCIADETECCION = 200.0 # Pixeles? no se. Esto es para que TE SIGA cuando estes cerca.
 var DETECCION = false
 @onready var anim = $AnimatedSprite2D
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	# Y si sale del rango? Pues se detiene y no hace nada.
 	# Huh, deberia de hacer un modo idle donde camine aleatoriamente.
 	# Nota de hacerlo luego para futuros enemigos.
-	if distancia < DISTANCIADETECCION and distancia > 30.0:
+	if distancia < DISTANCIADETECCION and distancia > DISTANCIAPARAR:
 		if not DETECCION:
 			Consola.escribir("EL ENEMIGO TE HA LOCALIZADO!", "red")
 			DETECCION = true
@@ -52,7 +53,7 @@ func _physics_process(delta: float) -> void:
 			DETECCION = false
 			
 		velocity = velocity.move_toward(Vector2.ZERO, 15)
-		if velocity.length() < 2.0:
+		if velocity.length() < 5.0:
 			anim.stop()
 
 	move_and_slide()
@@ -76,8 +77,8 @@ func morir():
 
 func aplicar_dmg_slime():
 	if dmg_al_objetivo and dmg_al_objetivo.has_method("recibir_damage"):
-		dmg_al_objetivo.recibir_damage(10)
-		Consola.escribir("-10 HP por daño de slime", "red")
+		dmg_al_objetivo.recibir_damage(0)
+		Consola.escribir("-HP por daño de slime", "red")
 
 func _on_area_ataque_body_entered(body: Node2D) -> void:
 	if body.has_method("recibir_damage"):

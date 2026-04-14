@@ -13,7 +13,7 @@ const FRICCION = 25.0
 # Indices 1-4 se SUPONE que son los frames de la pierna derecha.
 # Indices 5-8 se SUPONE que son los frames de la pierna izquierda.
 const SECUENCIA_FRAMES = [0, 1, 2, 3, 4, 3, 2, 1, 0, 5, 6, 7, 8, 7, 6, 5]
-# Bueno al final resulta tambien de que usariamos matrices. Vaya.
+# Podria rehacer esta parte.
 
 var ATACANDOESTADO = false 
 var DIRECCIONACTUAL = "down"
@@ -100,6 +100,9 @@ func _on_animated_sprite_2d_animation_finished():
 func recibir_damage(cantidad):
 	SALUD -= cantidad
 	print("HP: ", SALUD)
+	modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE
 	if SALUD <= 0:
 		morir()
 
