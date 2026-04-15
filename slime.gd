@@ -71,13 +71,20 @@ func recibir_damage(cantidad):
 
 func morir():
 	Consola.escribir("¡ENEMIGO ELIMINADO!", "green")
+	
+	set_physics_process(false)
+	
+	anim.play("Muerte")
+	
+	await anim.animation_finished
+	
 	queue_free()
-
+	
 # Se hizo que el daño ahora fuera una funcion repetitiva, depende del timer ahora. Se ha arreglado un problema.
 
 func aplicar_dmg_slime():
 	if dmg_al_objetivo and dmg_al_objetivo.has_method("recibir_damage"):
-		dmg_al_objetivo.recibir_damage(0)
+		dmg_al_objetivo.recibir_damage(10)
 		Consola.escribir("-HP por daño de slime", "red")
 
 func _on_area_ataque_body_entered(body: Node2D) -> void:

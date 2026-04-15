@@ -27,7 +27,7 @@ Consola="*uid://u5aaxfiw3s3n"
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
-window/size/mode=3
+window/size/resizable=false
 
 [global_group]
 
@@ -73,6 +73,7 @@ derecha={
 
 2d_physics/layer_1="Jugador"
 2d_physics/layer_2="Enemigo"
+2d_physics/layer_3="Pared"
 
 [physics]
 

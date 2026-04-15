@@ -22,8 +22,17 @@ func _physics_process(delta):
 	if !player or ATACANDOESTADO:
 		return
 	
+	var rayodetector = $RayCast2D
+	rayodetector.target_position = to_local(player.global_position)
+	
 	var distancia = global_position.distance_to(player.global_position)
 	var direccion_v = global_position.direction_to(player.global_position)
+	
+	var enemigo_vision_directa = false
+	if rayodetector.is_colliding():
+		var colision = rayodetector.get_collider()
+		if colision.is_in_group("Jugador"):
+			enemigo_vision_directa = true
 	
 	match current_state:
 		State.IDLE:
@@ -31,13 +40,13 @@ func _physics_process(delta):
 			anim.play("walk_" + DIRECCIONACTUAL)
 			anim.stop()
 			
-			if distancia < DISTANCIADETECCION:
+			if distancia < DISTANCIADETECCION and enemigo_vision_directa:
 				current_state = State.CHASE
 		
 		State.CHASE:
 			if distancia <= RANGO_ATAQUE:
 				current_state = State.ATTACK
-			elif distancia > DISTANCIADETECCION:
+			elif distancia > DISTANCIADETECCION or !enemigo_vision_directa:
 				current_state = State.IDLE
 			else:
 				velocity = direccion_v * VELOCIDAD
@@ -45,6 +54,7 @@ func _physics_process(delta):
 		
 		State.ATTACK:
 			iniciar_ataque()
+	
 	move_and_slide()
 	
 func actualizar_direccion_v_animacion(dir: Vector2):
@@ -75,10 +85,19 @@ func _on_animated_sprite_2d_animation_finished():
 
 func recibir_damage(cantidad):
 	SALUD -= cantidad
+	modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE
 	if SALUD <= 0:
 		morir()
 		
 func morir():
+	set_physics_process(false)
+	
+	anim.play("Muerte")
+	
+	await anim.animation_finished
+	
 	queue_free()
 	
 

@@ -4,6 +4,7 @@ extends CharacterBody2D
 var SALUD_MAX = 100
 var SALUD = 100
 
+const PANTALLA_DE_MUERTE = preload("res://MuerteJugador.tscn")
 const VELOCIDAD_MAX = 250.0
 const ACELERACION = 15.0
 const FRICCION = 25.0
@@ -107,6 +108,12 @@ func recibir_damage(cantidad):
 		morir()
 
 func morir():
+	set_physics_process(false)
+	modulate = Color.WHITE
+	
+	var muerte_instancia = PANTALLA_DE_MUERTE.instantiate()
+	get_tree().current_scene.add_child(muerte_instancia)
+	
 	Consola.escribir("FIN DEL JUEGO.", "maroon")
 	queue_free()
 
